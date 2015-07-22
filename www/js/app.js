@@ -5,6 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers'])
+var localDB = new PouchDB("tarifador");
+var remoteDB = new PouchDB("http://serverip:5984/tarifador");
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
