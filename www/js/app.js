@@ -74,7 +74,7 @@ var remoteDB = new PouchDB("http://alcancearoa:5984/tarifador");
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
 });
-// Code to signal every time we’ve received some kind of data change. 
+// Code to signal every time we’ve received some kind of data change.
 example.factory('PouchDBListener', ['$rootScope', function($rootScope) {
 
     localDB.changes({
@@ -100,3 +100,38 @@ example.factory('PouchDBListener', ['$rootScope', function($rootScope) {
     return true;
 
 }]);
+// example controller
+example.controller("ExampleController", function($scope, $ionicPopup, PouchDBListener) {
+
+    $scope.tarifador = [];
+
+    $scope.create = function() {
+        $ionicPopup.prompt({
+            title: 'Enter a new TODO item',
+            inputType: 'text'
+        })
+        .then(function(result) {
+            if(result !== "") {
+                if($scope.hasOwnProperty("tarifador") !== true) {
+                    $scope.tarifador = [];
+                }
+                localDB.post({title: result});
+            } else {
+                console.log("Action not completed");
+            }
+        });
+    }
+
+    $scope.$on('add', function(event, todo) {
+        $scope.tarifador.push(todo);
+    });
+
+    $scope.$on('delete', function(event, id) {
+        for(var i = 0; i < $scope.tarifador.length; i++) {
+            if($scope.tarifador[i]._id === id) {
+                $scope.tarifador.splice(i, 1);
+            }
+        }
+    });
+
+});
