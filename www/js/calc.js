@@ -1,4 +1,6 @@
-function calcula(operacion){
+// Script written by @jroadev
+
+function calculate(operation){
     var a = 300
     var b = 60
     var distance = document.calc.distance.value
