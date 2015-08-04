@@ -4,9 +4,15 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+<<<<<<< HEAD
 angular.module('starter', ['ionic', 'starter.controllers'])
 var localDB = new PouchDB("tarifador");
 var remoteDB = new PouchDB("http://alcancearoa:5984/tarifador");
+=======
+angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
+
+
+>>>>>>> dbd42cfc5cbb2993f7dc58ff1c088765e254392d
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
